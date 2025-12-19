@@ -18,6 +18,13 @@ class UserService {
       )?.get() ?? null
     );
   }
+  static async setStatus(id, status) {
+    const user = await User.findByPk(id);
+    if (!user) return null;
+
+    const updatedUser = await user.update({ status });
+    return updatedUser.status;
+  }
 }
 
 module.exports = UserService;
